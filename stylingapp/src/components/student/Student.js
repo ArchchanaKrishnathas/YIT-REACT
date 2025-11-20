@@ -30,19 +30,21 @@ export default function Student({fname,lname,grade,children}) {
 } */
 
 import React from 'react'
+import './Student.css';
 
 export default function Student(props) {
   return (
-    <div>
-      <h1>Student Details</h1>
-      <p><b>First Name:</b> <i>{props.fname}</i></p>
-      <p><b>Last Name:</b> <i>{props.lname}</i></p>
-      <p><b>Grade:</b> <i>{props.grade}</i></p>
+        <div className="box1">
+          <h2>{props.fname}'s Info</h2>
+          <p><b>First Name:</b> <i>{props.fname}</i></p>
+          <p><b>Last Name:</b> <i>{props.lname}</i></p>
+          <p><b>Grade:</b> <i>{props.grade}</i></p>
 
-      <div>
-        <h3>Subjects</h3>
-        {props.children}
-      </div>
-    </div>
+          <div className="box2">
+            <h3>Subjects</h3>
+            {props.children}
+          </div>
+        </div>
+
   )
 }
