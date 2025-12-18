@@ -1,0 +1,39 @@
+
+.box1{
+    background-color: rgb(161, 216, 194);
+    margin:15px ;
+    padding:10px;
+    width:400px;
+    border-radius: 15px;
+    text-align: justify;
+    border: 1px solid rgb(19, 79, 89) ;
+    box-shadow: 7px 7px #a7d8fc;
+   
+}
+
+
+
+.box2{
+    background-color: #4BD2AE;
+    margin:10px;
+    padding:10px;
+    border-radius: 15px;
+    
+}
+
+p{
+    margin-left: 30px;
+}
+
+h2{
+    text-align: center;
+    color: rgba(24, 24, 73, 0.864);
+}
+h3{
+    margin: 15px;
+    color: rgb(17, 22, 72);
+}
+
+b{
+    color: rgb(24, 5, 103);
+}

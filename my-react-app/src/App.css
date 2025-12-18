@@ -1,0 +1,39 @@
+/* *{
+     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1{
+    color: rgb(46, 41, 110);
+    text-align: center;
+}
+
+
+.container{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+   
+}
+
+div{
+     background-color: aliceblue;
+}
+
+.card:hover{
+     transform: scale(1.03);
+    transition-duration: 0.5s;
+} */
+ 
+
+.container{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+          
+
+.box{
+     width: 200px;
+     height: 200px;
+}
