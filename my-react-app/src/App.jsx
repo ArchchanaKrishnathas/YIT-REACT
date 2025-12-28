@@ -8,6 +8,8 @@ import './App.css'
 // import Color from './components/state/Color.jsx'
 import Students from './components/state/Student.jsx'
 import GithubUsers from './components/GithubUsers.jsx'
+import UseEffect from './components/UseEffect.jsx'
+import UserInput from './components/UserInput.jsx'
 
 function App() {
 
@@ -54,7 +56,11 @@ function App() {
 
        {/* <Students/> */}
 
-       <GithubUsers/>
+       {/* <GithubUsers/> */}
+
+       {/* <UseEffect/> */}
+
+       <UserInput/>
     </>
   )
 }
