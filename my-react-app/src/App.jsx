@@ -11,6 +11,10 @@ import GithubUsers from './components/GithubUsers.jsx'
 import UseEffect from './components/UseEffect.jsx'
 import UserInput from './components/UserInput.jsx'
 
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import UserDetails from './components/UserDetails.jsx'
+import Users from './components/Users.jsx'
+
 function App() {
 
   return (
@@ -60,7 +64,17 @@ function App() {
 
        {/* <UseEffect/> */}
 
-       <UserInput/>
+       {/* <UserInput/> */}
+
+
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Users/>} />
+            <Route path="/users/:id" element={<UserDetails/>} />
+        </Routes>
+      </BrowserRouter>
+
+
     </>
   )
 }
