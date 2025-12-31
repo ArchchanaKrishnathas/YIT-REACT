@@ -46,7 +46,7 @@ export default function Students() {
 
           {/* {students.map((student)=>{
             return <p>{student.name}</p> */}
-       {/* 
+       
               <h1>Student Details List: {totalStudents}</h1>
                <table border={2}>
                   <tr>
@@ -79,7 +79,7 @@ export default function Students() {
                  <button onClick={handlerDeleteAll}>Delete All</button>  <br/>  <br/>
                  <button onClick={handlerReset}>Reset</button>
 
-                   */}
+                  
 
 
 
