@@ -15,6 +15,7 @@ import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import UserDetails from './components/UserDetails.jsx'
 import Users from './components/Users.jsx'
 import Carts from './components/Carts.jsx'
+import CreateStudent from './components/CreateStudent.jsx'
 
 function App() {
 
@@ -69,16 +70,16 @@ function App() {
 
     
 
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
             <Route path="/" element={<Users/>} />
             <Route path="/users/:id" element={<UserDetails/>} />
 
             <Route path="/carts" element={<Carts/>} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
 
-
+      <CreateStudent/>
     </>
   )
 }

@@ -14,13 +14,39 @@ function Users() {
     <div>
       <h2>User List</h2>
 
-      {users.map(user => (
+    <table border={2}>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Profile</th>
+                    <th>Age</th>
+                    <th>Show</th>
+                    <th>Delete</th>
+                </tr>
+                {users.map(user => (
+                    <tr>
+                        <td>{user.firstName}</td>
+                        <td>{user.lastName}</td>
+                        <td> <img src={user.image} width="120" alt="user"/></td>
+                        <td>{user.age}</td>
+                        <td> <Link to={`/users/${user.id}`}>
+                            {user.firstName} {user.lastName}
+                        </Link></td>
+                        <td><button onClick={() => {
+                            handlerdelete(user.id)
+                        }}>Delete</button></td>
+                    </tr>
+                ))}
+            </table>
+
+
+      {/* {users.map(user => (
         <div key={user.id} style={{ marginBottom: "8px" }}>
           <Link to={`/users/${user.id}`}>
             {user.firstName} {user.lastName}
           </Link>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
