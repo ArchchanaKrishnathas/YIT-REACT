@@ -18,9 +18,12 @@ export default function CreateStudent() {
                 <br />
                 <br />
                 <label htmlFor="lname"> Last Name </label>
-                <input type="text" name="lname" id="lname" value={lastname} onChange={(e)=>{handleChangeValue(e); }} />
+                {/* <input type="text" name="lname" id="lname" value={lastname} onChange={(e)=>{handleChangeValue(e); }} /> */}
+                <input type="text" name="lname" id="lname" value={lastname} onChange={(e)=>{setLastname(e.target.value)
+                                                                                console.log(e.target.value); }}/>
+
             </form>
-            <h1> My full name is {firstname}</h1>
+            <h1> My full name is {firstname} {lastname}</h1>
         </div>
     )
 }
