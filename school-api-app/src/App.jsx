@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
+import PrivateRoute from './routes/PrivateRoute';
 
 // Students
 import StudentIndex from './pages/students/StudentIndex';
@@ -19,45 +20,90 @@ import SubjectCreate from './pages/subjects/SubjectCreate';
 import SubjectEdit from './pages/subjects/SubjectEdit';
 import SubjectShow from './pages/subjects/SubjectShow';
 import Login from './pages/auth/Login';
+import { Navigate } from "react-router-dom";
+import Register from './pages/auth/Register';
 
 function App() {
   return (
+
     <BrowserRouter>
       <Routes>
+
+        {/* Public route */}
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-        {/* Main layout */}
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<StudentIndex />} />
+        {/* Protected routes */}
+        <Route element={<PrivateRoute />}>
 
-          
-          {/* Students routes */}
-          <Route path="students">
+          <Route path="/" element={<MainLayout />}>
             <Route index element={<StudentIndex />} />
-            <Route path="create" element={<StudentCreate />} />
-            <Route path=":id/edit" element={<StudentEdit />} />
-            <Route path=":id" element={<StudentShow />} />
-          </Route>
 
-          {/* Grades routes */}
-          <Route path="grades">
-            <Route index element={<GradeIndex />} />
-            <Route path="create" element={<GradeCreate />} />
-            <Route path=":id/edit" element={<GradeEdit />} />
-            <Route path=":id" element={<GradeShow />} />
-          </Route>
+            {/* Students */}
+            <Route path="students">
+              <Route index element={<StudentIndex />} />
+              <Route path="create" element={<StudentCreate />} />
+              <Route path=":id/edit" element={<StudentEdit />} />
+              <Route path=":id" element={<StudentShow />} />
+            </Route>
 
-          {/* Subjects routes */}
-          <Route path="subjects">
-            <Route index element={<SubjectIndex />} />
-            <Route path="create" element={<SubjectCreate />} />
-            <Route path=":id/edit" element={<SubjectEdit />} />
-            <Route path=":id" element={<SubjectShow />} />
+            {/* Grades */}
+            <Route path="grades">
+              <Route index element={<GradeIndex />} />
+              <Route path="create" element={<GradeCreate />} />
+              <Route path=":id/edit" element={<GradeEdit />} />
+              <Route path=":id" element={<GradeShow />} />
+            </Route>
+
+            {/* Subjects */}
+            <Route path="subjects">
+              <Route index element={<SubjectIndex />} />
+              <Route path="create" element={<SubjectCreate />} />
+              <Route path=":id/edit" element={<SubjectEdit />} />
+              <Route path=":id" element={<SubjectShow />} />
+            </Route>
+
           </Route>
 
         </Route>
+
       </Routes>
     </BrowserRouter>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="/login" element={<Login />} />
+
+    //     {/* Main layout */}
+    //     <Route path="/" element={<MainLayout />}>
+    //       <Route index element={<StudentIndex />} />
+
+    //       {/* Students routes */}
+    //       <Route path="students">
+    //         <Route index element={<StudentIndex />} />
+    //         <Route path="create" element={<StudentCreate />} />
+    //         <Route path=":id/edit" element={<StudentEdit />} />
+    //         <Route path=":id" element={<StudentShow />} />
+    //       </Route>
+
+    //       {/* Grades routes */}
+    //       <Route path="grades">
+    //         <Route index element={<GradeIndex />} />
+    //         <Route path="create" element={<GradeCreate />} />
+    //         <Route path=":id/edit" element={<GradeEdit />} />
+    //         <Route path=":id" element={<GradeShow />} />
+    //       </Route>
+
+    //       {/* Subjects routes */}
+    //       <Route path="subjects">
+    //         <Route index element={<SubjectIndex />} />
+    //         <Route path="create" element={<SubjectCreate />} />
+    //         <Route path=":id/edit" element={<SubjectEdit />} />
+    //         <Route path=":id" element={<SubjectShow />} />
+    //       </Route>
+
+    //     </Route>
+    //   </Routes>
+    // </BrowserRouter>
   );
 }
 

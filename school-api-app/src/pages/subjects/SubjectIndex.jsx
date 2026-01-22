@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import api from "@/services/api"
 
 import {
   Table,
@@ -18,37 +18,37 @@ export default function SubjectIndex() {
   const [subjects, setSubjects] = useState([])
   const [loading, setLoading] = useState(true)
   const navigate = useNavigate()
-
+  
   // Fetch subjects on mount
   useEffect(() => {
     fetchSubjects()
   }, [])
 
   const fetchSubjects = async () => {
-    try {
-      setLoading(true)
-      const res = await axios.get("http://localhost:8000/api/subjects")
-      // If API returns { success: true, data: [...] }
-      setSubjects(res.data.data)
-    } catch (err) {
-      console.error("Failed to fetch subjects:", err)
-      alert("Failed to fetch subjects")
-    } finally {
-      setLoading(false)
-    }
+  try {
+    setLoading(true)
+    const res = await api.get("/subjects")
+    setSubjects(res.data.data)
+  } catch (err) {
+    console.error("Failed to fetch subjects:", err)
+    alert("Failed to fetch subjects")
+  } finally {
+    setLoading(false)
   }
+}
 
-  const deleteSubject = async (id) => {
-    if (!confirm("Do you want to delete this subject?")) return
-    try {
-      await axios.delete(`http://localhost:8000/api/subjects/${id}`)
-      fetchSubjects()
-      alert("Subject deleted successfully")
-    } catch (err) {
-      console.error("Failed to delete subject:", err)
-      alert("Failed to delete subject")
-    }
+const deleteSubject = async (id) => {
+  if (!confirm("Do you want to delete this subject?")) return
+  try {
+    await api.delete(`/subjects/${id}`) 
+    fetchSubjects()
+    alert("Subject deleted successfully")
+  } catch (err) {
+    console.error("Failed to delete subject:", err)
+    alert("Failed to delete subject")
   }
+}
+
 
   if (loading) {
     return <p className="text-center mt-10">Loading subjects...</p>

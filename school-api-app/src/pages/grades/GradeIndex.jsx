@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import api from "@/services/api"
 
 import {
   Table,
@@ -26,7 +26,7 @@ export default function GradeIndex() {
     const fetchGrades = async () => {
       try {
         setLoading(true)
-        const res = await axios.get("http://localhost:8000/api/grades")
+        const res = await api.get("/grades")
         // handle API response that might be { success: true, data: [...] }
         setGrades(res.data.data || res.data)
       } catch (error) {

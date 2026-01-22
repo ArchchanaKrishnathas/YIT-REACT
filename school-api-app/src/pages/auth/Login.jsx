@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import api from "@/services/api"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
+import { Link } from "react-router-dom"
 
 export default function Login() {
   const navigate = useNavigate()
@@ -12,27 +13,31 @@ export default function Login() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
+  // If already logged in, go to dashboard
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/students")
+    }
+  }, [])
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError("")
 
     try {
-      const res = await axios.post("http://localhost:8000/api/login", {
+      const res = await api.post("/login", {
         email,
         password,
       })
-      
-      // Save token in localStorage or context
+
+      // Save token
       localStorage.setItem("token", res.data.token)
 
-      // Redirect to dashboard
-      navigate("/dashboard")
+      navigate("/")
     } catch (err) {
       console.error(err)
-      setError(
-        err.response?.data?.message || "Login failed. Please try again."
-      )
+      setError(err.response?.data?.message || "Login failed")
     } finally {
       setLoading(false)
     }
@@ -53,39 +58,37 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email">Email</Label>
+            <Label>Email</Label>
             <Input
               type="email"
-              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
               required
-              className="mt-1"
             />
           </div>
 
           <div>
-            <Label htmlFor="password">Password</Label>
+            <Label>Password</Label>
             <Input
               type="password"
-              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
               required
-              className="mt-1"
             />
           </div>
 
-          <Button
-            type="submit"
-            className="w-full bg-[#1f4e7a] hover:bg-[#16395b]"
-            disabled={loading}
-          >
+          <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Logging in..." : "Login"}
           </Button>
         </form>
+
+        <p className="text-center text-sm mt-4">
+          Don’t have an account?{" "}
+          <Link to="/register" className="text-blue-600 hover:underline">
+            Register
+          </Link>
+        </p>
+
       </div>
     </div>
   )

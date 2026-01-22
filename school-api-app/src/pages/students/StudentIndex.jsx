@@ -18,6 +18,7 @@ import {
 export default function StudentIndex() {
   const [students, setStudents] = useState([])
   const navigate = useNavigate()
+  // const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchStudents()
@@ -25,13 +26,14 @@ export default function StudentIndex() {
 
   const fetchStudents = async () => {
   try {
-    const res = await api.get("/students");
-    console.log("API response:", res.data);
-    setStudents(res.data.data); // <-- use .data
+    const res = await api.get("/students")
+    setStudents(res.data.data)
   } catch (err) {
-    console.error("Failed to fetch students:", err);
+    console.error(err)
+  } finally {
+    setLoading(false)
   }
-};
+}
 
   const deleteStudent = async (id) => {
     if (confirm("Do you want to delete?")) {
@@ -76,14 +78,7 @@ export default function StudentIndex() {
           {students.map((student) => (
             <TableRow key={student.id}>
               <TableCell>
-                <img
-                  src={
-                    student.image_path
-                      ? `http://localhost:8000/storage/${student.image_path}`
-                      : "/default_profile.jpg"
-                  }
-                  className="w-14 h-14 rounded-full object-cover"
-                />
+                <img src={student.image_path ? `http://localhost:8000/storage/${student.image_path}`: "/default_profile.jpg"} className="w-14 h-14 rounded-full object-cover" />
               </TableCell>
 
               <TableCell>{student.father_name}</TableCell>
